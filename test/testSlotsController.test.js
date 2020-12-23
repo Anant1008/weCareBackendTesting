@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const chaiHttp = require('chai-http');
-const slots = require('../../controllers/slotsController');
-const server = require('../../server');
+const slots = require('../controllers/slotsController');
+const server = require('../server');
 const request = require('supertest');
 const mongoose = require('mongoose');
 
