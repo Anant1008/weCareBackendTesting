@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
     }
 });
 //Registering the patient
-router.post('/register', patientRegistrationController.registerPatient);
+router.post('/register', checkAuth, patientRegistrationController.registerPatient);
 
 //Getting a certain patient by their id
 router.get('/:email', checkAuth, PatientByIdController.patient);
@@ -51,6 +51,6 @@ router.get('/appointments/:patient_id', checkAuth, AppointmentController.getAppo
 
 router.get('/appointments/:doctor_id/:startDate/:endDate', checkAuth, AppointmentController.getAppointmentsWithinRange);
 
-router.get('/mypatient/:email', PatientByIdController.getPatientByMailId);
+router.get('/mypatient/:email', checkAuth, PatientByIdController.getPatientByMailId);
 
 module.exports = router;

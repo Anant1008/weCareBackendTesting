@@ -1,4 +1,5 @@
 
+
 const doctorController = require('../../controllers/DoctorController')
 const slots = require('../../controllers/slotsController');
 const server = require('../../server');
@@ -16,7 +17,7 @@ describe('GET /api/doctor', () => {
 
     });
     
-
+    
     it("should get details of a particular doctor ", (done) => {
         const doctorId = "channa6190@gmail.com";
         request(server)

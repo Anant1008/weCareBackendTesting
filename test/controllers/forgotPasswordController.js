@@ -15,4 +15,5 @@ describe('GET /api/auth', () => {
             .expect('content-type', /json/)
 
     });
+
 })

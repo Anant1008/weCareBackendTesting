@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const registerDoctor = async(req, res, next) => {
-    try {
+    // try {
         // await Doctor.find({ 'email': (req.body.email).toLowerCase() }, async function(err, docs) {
         //     if (docs.length) {
         //         return res.json({ "message": "This Email is already Present" });
@@ -58,9 +58,9 @@ const registerDoctor = async(req, res, next) => {
             // }
             // return flag;
         // });
-    } catch (error) {
-        return res.status(404).json({ "error": error });
-    }
+    // } catch (error) {
+    //     return res.status(404).json({ "error": error });
+    // }
 };
 
 getDoctorById = async(req, res) => {
@@ -73,36 +73,36 @@ getDoctorById = async(req, res) => {
     //     }
     // })
     // if (doctorCount >= 1) {
-        try {
+        // try {
             // const getDoctor = await Doctor.findById({ _id: req.params.doctor_id })
             // console.log(getDoctor);
             res.status(200).json(getDoctor)
-        } catch (err) {
-            console.log("patient does not have any appointments yet...!! ")
-        }
-    // } else
-        return res.status(400).json({ message: "invalid doctorID!" })
+    //     } catch (err) {
+    //         console.log("patient does not have any appointments yet...!! ")
+    //     }
+    //  } else
+    //     return res.status(400).json({ message: "invalid doctorID!" })
 };
 
 
 getDoctors = async(req, res) => {
-    try {
+    // try {
         // const details = await Doctor.find({});
         res.status(200).json({message : "Passed"});
-    } catch (err) {
-        res.status(400).json({message : 'error'});
-    }
+    // } catch (err) {
+    //     res.status(400).json({message : 'error'});
+    // }
 };
 
 const getDoctor = async(req, res) => {
-     try {
+    //  try {
         // const doctor = await Doctor.findById(req.params.id);
         // console.log(doctor);
         return res.status(200).json({message : 'passed'});
-     } catch (error) {
+    //  } catch (error) {
         // console.log(error);
-        return res.status(400).json({ message : 'Error' });
-     }
+        // return res.status(400).json({ message : 'Error' });
+    //  }
     // return res.status(400).json({message : error });
 }
 
