@@ -36,7 +36,7 @@ router.post('/register', doctorRegistrationController.registerDoctor);
 router.get('/doctors', doctorRegistrationController.getDoctors);
 router.get('/:doctor_id',  doctorRegistrationController.getDoctorById);
 router.get('/getDoctor/:id',  doctorRegistrationController.getDoctor);
-router.patch('/:email', checkAuth, multer({ storage: storage }).single("image"), DoctorController.updateDoctorDetails); //Updating details for doctor's edit profile
+//router.patch('/:email', checkAuth, multer({ storage: storage }).single("image"), DoctorController.updateDoctorDetails); //Updating details for doctor's edit profile
 router.get('/getDoctor/:id', checkAuth, doctorRegistrationController.getDoctor);
 router.patch('/:email', multer({ storage: storage }).single("image"), DoctorController.updateDoctorDetails); //Updating details for doctor's edit profile
 
