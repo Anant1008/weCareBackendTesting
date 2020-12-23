@@ -4,6 +4,7 @@
       router = express.Router();
   const path = require("path");
   const reportsController = require('../controllers/ReportsController');
+const checkAuth = require("../middleware/check-auth");
   // Multer File upload settings
   const DIR = "./reports/";
   let email;
@@ -48,14 +49,14 @@
       },
   });
 
-  router.post("/upload-report/:email", upload.array("filename", 6), reportsController.uploadReport);
+  router.post("/upload-report/:email",checkAuth, upload.array("filename", 6), reportsController.uploadReport);
 
-  router.get("/", reportsController.findReports);
+  router.get("/", checkAuth, reportsController.findReports);
 
-  router.delete('/deleteReport/:email/:report', reportsController.deleteReport);
+  router.delete('/deleteReport/:email/:report', checkAuth,  reportsController.deleteReport);
 
-  router.get('/getReports/:email', reportsController.getAllReports);
+  router.get('/getReports/:email',checkAuth,  reportsController.getAllReports);
 
-  router.post('/downloadReport', reportsController.downloadReport);
+  router.post('/downloadReport', checkAuth, reportsController.downloadReport);
 
   module.exports = router;
