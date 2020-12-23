@@ -18,12 +18,46 @@
 
 //     });
 
-//     it("should not get all appointments of particular patient", (done) => {
-//         const patient_id = "channa6190gmail.com";
+//     it("should post appointment of patient", (done) => {
 
 //         request(server)
-//             .put(`/api/patient/appointments/${patient_id}`)
-//             .expect(400, done)
+//             .post(`/api/patient/appointments`)
+//             .expect(200, done)
+//             .expect('content-type', /json/)
+
+//     });
+
+//     it("should get appointment within a given date range", (done) => {
+//         const doctor_id = "channa6190gmail.com";
+//         const startDate = "2020-12-15";
+//         const endDate = "2020-12-21";
+
+//         request(server)
+//             .get(`/api/doctor/appointments/${doctor_id}/${startDate}/${endDate}`)
+//             .expect(200, done)
+//             .expect('content-type', /json/)
+
+//     });
+
+//     it("should get appointment by doctor id", (done) => {
+//         const doctor_id = "channa6190gmail.com";
+
+//         request(server)
+//             .get(`/api/doctor/appointments/${doctor_id}`)
+//             .expect(200, done)
+//             .expect('content-type', /json/)
+
+//     });
+
+
+//     it("should get doctor appointment within a given date range", (done) => {
+//         const doctor_id = "channa6190gmail.com";
+//         const startDate = "2020-12-15";
+//         const endDate = "2020-12-21";
+
+//         request(server)
+//             .get(`/api/doctor/appointments/${doctor_id}/${startDate}/${endDate}`)
+//             .expect(200, done)
 //             .expect('content-type', /json/)
 
 //     });

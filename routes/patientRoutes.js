@@ -45,11 +45,11 @@ router.get('/getSlots/:docId/:date', slotsController.getSlots);
 router.put('/updateSlot/:docId/:date/:index', slotsController.updateSlot);
 
 //router.get('/allAppointments', AppointmentController.getAppointments);
-router.post('/appointments', checkAuth, AppointmentController.postAppointment);
+router.post('/appointments', AppointmentController.postAppointment);
 
 router.get('/appointments/:patient_id', AppointmentController.getAppointmentByPatientId);
 
-router.get('/appointments/:doctor_id/:startDate/:endDate', checkAuth, AppointmentController.getAppointmentsWithinRange);
+router.get('/appointments/:doctor_id/:startDate/:endDate', AppointmentController.getAppointmentsWithinRange);
 
 router.get('/mypatient/:email', checkAuth, PatientByIdController.getPatientByMailId);
 

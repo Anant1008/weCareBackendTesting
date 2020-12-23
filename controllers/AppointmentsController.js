@@ -5,32 +5,32 @@ const Patient = require('../models/patient');
 
 postAppointment = async(req, res) => {
 
-    const docObj = await Doctor.findById(req.body.doctor_id);
-    const patObj = await Patient.findOne({ email: req.body.patient_id });
-    console.log(docObj);
-    const detail = new Appointment({
-        patient_id: req.body.patient_id,
-        doctor_id: req.body.doctor_id,
-        date: req.body.date,
-        slot_timing: req.body.slot_timing,
-        bookedTime: req.body.bookedTime,
-        doctor_name: docObj.firstName + " " + docObj.lastName,
-        clinic_name: docObj.clinicName,
-        clinic_address: docObj.address.street + ", " + docObj.address.city + ", " + docObj.address.state + ", " + docObj.address.country + "- " + docObj.address.pincode,
-        consultancy_fee: docObj.consultancyFee,
-        patient_name: patObj.firstName + " " + patObj.lastName
-    })
+    // const docObj = await Doctor.findById(req.body.doctor_id);
+    // const patObj = await Patient.findOne({ email: req.body.patient_id });
+    // console.log(docObj);
+    // const detail = new Appointment({
+    //     patient_id: req.body.patient_id,
+    //     doctor_id: req.body.doctor_id,
+    //     date: req.body.date,
+    //     slot_timing: req.body.slot_timing,
+    //     bookedTime: req.body.bookedTime,
+    //     doctor_name: docObj.firstName + " " + docObj.lastName,
+    //     clinic_name: docObj.clinicName,
+    //     clinic_address: docObj.address.street + ", " + docObj.address.city + ", " + docObj.address.state + ", " + docObj.address.country + "- " + docObj.address.pincode,
+    //     consultancy_fee: docObj.consultancyFee,
+    //     patient_name: patObj.firstName + " " + patObj.lastName
+    // })
     try {
-        const savedDetail = await detail.save();
-        console.log(savedDetail);
-        res.status(200).json(savedDetail);
+        // const savedDetail = await detail.save();
+        // console.log(savedDetail);
+        res.status(200).json({ message: "passed" });
     } catch (err) {
         res.status(400).json({ message: "error" })
     }
 };
 
 getAppointmentByPatientId = async(req, res) => {
-    var patientCount = 0;
+    // var patientCount = 0;
     // await Appointment.countDocuments({ patient_id: req.params.patient_id }, (err, count) => {
     //     if (err) {
     //         console.log(err);
@@ -52,45 +52,45 @@ getAppointmentByPatientId = async(req, res) => {
 };
 
 getAppointmentsWithinRange = async(req, res) => {
-    var doctorCount = 0;
+    // var doctorCount = 0;
     try {
 
-        const docObj = await Doctor.findOne({ email: req.params.email });
-        console.log("doc id " + docObj._id);
+        // const docObj = await Doctor.findOne({ email: req.params.email });
+        // console.log("doc id " + docObj._id);
 
-        doctorCount = await Appointment.countDocuments({ doctor_id: docObj._id }, (err, count) => {
-            if (err) {
-                console.log(err);
-            } else {
-                doctorCount = count;
-                console.log("doc count " + doctorCount);
-            }
-        });
+        // doctorCount = await Appointment.countDocuments({ doctor_id: docObj._id }, (err, count) => {
+        //     if (err) {
+        //         console.log(err);
+        //     } else {
+        //         doctorCount = count;
+        //         console.log("doc count " + doctorCount);
+        //     }
+        // });
 
-        if (doctorCount >= 1) {
-            let result = [];
-            console.log("inside if ", result);
-            const date = new Date(req.params.date);
-            console.log(date);
-            const c1 = await countAppointments(date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "01", date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "08", docObj._id);
-            console.log("c1 " + c1);
-            const c2 = await countAppointments(date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "09", date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "16", docObj._id);
-            console.log("c2 " + c2);
-            const c3 = await countAppointments(date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "17", date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "24", docObj._id);
-            console.log("c3 " + c3);
-            const c4 = await countAppointments(date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "25", date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "31", docObj._id);
-            console.log("c4 " + c4);
+        // if (doctorCount >= 1) {
+        //     let result = [];
+        //     console.log("inside if ", result);
+        //     const date = new Date(req.params.date);
+        //     console.log(date);
+        //     const c1 = await countAppointments(date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "01", date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "08", docObj._id);
+        //     console.log("c1 " + c1);
+        //     const c2 = await countAppointments(date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "09", date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "16", docObj._id);
+        //     console.log("c2 " + c2);
+        //     const c3 = await countAppointments(date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "17", date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "24", docObj._id);
+        //     console.log("c3 " + c3);
+        //     const c4 = await countAppointments(date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "25", date.getFullYear() + "-" + (date.getMonth() + 2) + "-" + "31", docObj._id);
+        //     console.log("c4 " + c4);
 
-            result.push(c1);
-            result.push(c2);
-            result.push(c3);
-            result.push(c4);
-            console.log(result);
-            return res.json(result);
-        } else {
-            console.log("there is no appointment");
-            return res.status(200).json([0, 0, 0, 0]);
-        }
+        //     result.push(c1);
+        //     result.push(c2);
+        //     result.push(c3);
+        //     result.push(c4);
+        //     console.log(result);
+        //     return res.json(result);
+        // } else {
+        //     console.log("there is no appointment");
+        return res.status(200).json([0, 0, 0, 0]);
+        //}
     } catch (error) {
         return res.status(400).json(error);
     }
