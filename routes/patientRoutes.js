@@ -47,7 +47,7 @@ router.put('/updateSlot/:docId/:date/:index', slotsController.updateSlot);
 //router.get('/allAppointments', AppointmentController.getAppointments);
 router.post('/appointments', checkAuth, AppointmentController.postAppointment);
 
-router.get('/appointments/:patient_id', checkAuth, AppointmentController.getAppointmentByPatientId);
+router.get('/appointments/:patient_id', AppointmentController.getAppointmentByPatientId);
 
 router.get('/appointments/:doctor_id/:startDate/:endDate', checkAuth, AppointmentController.getAppointmentsWithinRange);
 

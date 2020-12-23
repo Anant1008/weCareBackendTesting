@@ -3,16 +3,6 @@ const Appointment = require('../models/appointment');
 const Doctor = require('../models/doctor');
 const Patient = require('../models/patient');
 
-getAppointments = async(req, res) => {
-    try {
-        console.log("in get");
-        const details = await Appointment.find();
-        res.status(200).json(details);
-    } catch (err) {
-        console.log(err);
-    }
-};
-
 postAppointment = async(req, res) => {
 
     const docObj = await Doctor.findById(req.body.doctor_id);
@@ -35,30 +25,30 @@ postAppointment = async(req, res) => {
         console.log(savedDetail);
         res.status(200).json(savedDetail);
     } catch (err) {
-        console.log(err);
+        res.status(400).json({ message: "error" })
     }
 };
 
 getAppointmentByPatientId = async(req, res) => {
     var patientCount = 0;
-    await Appointment.countDocuments({ patient_id: req.params.patient_id }, (err, count) => {
-        if (err) {
-            console.log(err);
-        } else {
-            patientCount = count;
-        }
-    })
-    if (patientCount >= 1) {
-        try {
-            const getAppointments = await Appointment.find({ patient_id: req.params.patient_id }).sort({ bookedTime: -1 })
+    // await Appointment.countDocuments({ patient_id: req.params.patient_id }, (err, count) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         patientCount = count;
+    //     }
+    // })
+    // if (patientCount >= 1) {
+    try {
+        //const getAppointments = await Appointment.find({ patient_id: req.params.patient_id }).sort({ bookedTime: -1 })
 
-            console.log(getAppointments);
-            res.json(getAppointments)
-        } catch (err) {
-            console.log("patient does not have any appointments yet...!! ")
-        }
-    } else
-        return res.status(400).json({ message: "invalid patientID!" })
+        //console.log(getAppointments);
+        res.status(200).json(getAppointments)
+    } catch (err) {
+        res.status(400).json({ message: "no appointments yet" });
+    }
+    // } else
+    //return res.status(400).json({ message: "invalid patientID!" })
 };
 
 getAppointmentsWithinRange = async(req, res) => {
@@ -182,4 +172,4 @@ getDoctorAppointmentsWithinRange = async(req, res) => {
 // if(date.getMonth()===1)
 //     const c3=await this.countAppointments(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+"17",date.getFullYear()+"-"+(date.getMonth()+1)+"-"+"29");
 // else if(date.getMonth()===0 || date.getMonth()===2 || date.getMonth()===6 || date.getMonth()===7 || date.getMonth()===0)
-module.exports = { getAppointments, getAppointmentByPatientId, postAppointment, getAppointmentsWithinRange, getAppointmentByDoctorId, getDoctorAppointmentsWithinRange }
+module.exports = { getAppointmentByPatientId, postAppointment, getAppointmentsWithinRange, getAppointmentByDoctorId, getDoctorAppointmentsWithinRange }

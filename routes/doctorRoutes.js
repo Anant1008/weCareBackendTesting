@@ -31,12 +31,12 @@ const storage = multer.diskStorage({
     }
 });
 
-router.get('/doctorByEmail/:email', checkAuth, DoctorController.getDoctorDetailsById); //Fetching details for edit profile
+router.get('/doctorByEmail/:email', DoctorController.getDoctorDetailsById); //Fetching details for edit profile
 router.post('/register', doctorRegistrationController.registerDoctor);
 router.get('/doctors', checkAuth, doctorRegistrationController.getDoctors);
 router.get('/:doctor_id', checkAuth, doctorRegistrationController.getDoctorById);
 router.get('/getDoctor/:id', checkAuth, doctorRegistrationController.getDoctor);
-router.patch('/:email', checkAuth, multer({ storage: storage }).single("image"), DoctorController.updateDoctorDetails); //Updating details for doctor's edit profile
+router.patch('/:email', multer({ storage: storage }).single("image"), DoctorController.updateDoctorDetails); //Updating details for doctor's edit profile
 
 // router.patch('/submitFeedback/:email', checkAuth, DoctorController.updateDoctorFeedback); //Updating doctor ratings
 
