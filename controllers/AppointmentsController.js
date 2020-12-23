@@ -43,6 +43,7 @@ getAppointmentByPatientId = async(req, res) => {
         //const getAppointments = await Appointment.find({ patient_id: req.params.patient_id }).sort({ bookedTime: -1 })
 
         //console.log(getAppointments);
+        const getAppointments = {};
         res.status(200).json(getAppointments)
     } catch (err) {
         res.status(400).json({ message: "no appointments yet" });
