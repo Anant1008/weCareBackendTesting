@@ -11,7 +11,7 @@ const doctorRouter = require('./routes/doctorRoutes');
 const addressRouter = require('./routes/addressRoutes');
 const reportRouter = require('./routes/reportRoutes');
 const slotsController = require('./controllers/slotsController');
-
+const notiRouter = require('./routes/notificationRoutes');
 const PORT = process.env.PORT || 3000;
 
 
@@ -43,6 +43,7 @@ app.use('/api/patient', patientRouter);
 app.use('/api/doctor', doctorRouter);
 app.use('/api/address', addressRouter);
 app.use('/api/reports', reportRouter);
+app.use('/api/notification', notiRouter);
 app.use("/images", express.static(path.join("images")));
 app.use("/reports", express.static(path.join("reports")));
 
