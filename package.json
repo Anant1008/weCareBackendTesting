@@ -4,7 +4,7 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "coverage": "nyc --reporter=text npm run test",
+        "coverage": "nyc --reporter=html npm run test",
         "test": "mocha --recursive --exit --timeout 10000",
         "start": "node server.js"
     },
